@@ -1,0 +1,27 @@
+{
+  "name": "cs407-backend",
+  "version": "1.0.0",
+  "main": "s3test.js",
+  "dependencies": {
+    "aws-sdk": "^2.465.0",
+    "bcrypt": "^3.0.6",
+    "eslint": "^5.16.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuJialu/cs407Summer-back-end.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GuJialu/cs407Summer-back-end/issues"
+  },
+  "homepage": "https://github.com/GuJialu/cs407Summer-back-end#readme",
+  "description": ""
+}
