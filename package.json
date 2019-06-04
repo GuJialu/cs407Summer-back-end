@@ -1,13 +1,14 @@
 {
   "name": "cs407-backend",
   "version": "1.0.0",
-  "main": "s3test.js",
+  "main": "app.js",
   "dependencies": {
     "aws-sdk": "^2.465.0",
     "bcrypt": "^3.0.6",
     "eslint": "^5.16.0",
     "jsonwebtoken": "^8.5.1",
-    "koa": "^2.7.0"
+    "koa": "^2.7.0",
+    "mysql2": "^1.6.5"
   },
   "devDependencies": {},
   "scripts": {
