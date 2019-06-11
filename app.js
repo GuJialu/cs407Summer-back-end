@@ -6,15 +6,16 @@ const AWS = require('aws-sdk') // make sure you have the credentials file in C:\
 
 const app = new Koa();
 
-const pool = mysql.createPool({
-    host: 'cs407jialudb.c0ughbdye66r.us-east-2.rds.amazonaws.com',
-    user: 'cs407jialu',
-    database: 'cs407dba',
-    password: 'cs407pass',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
+// const pool = mysql.createPool({
+//     host: 'cs407jialudb.c0ughbdye66r.us-east-2.rds.amazonaws.com',
+//     user: 'cs407jialu',
+//     database: 'cs407dba',
+//     password: 'cs407pass',
+//     waitForConnections: true,
+//     connectionLimit: 10,
+//     queueLimit: 0
+// });
+const pool = require('@/config/dev').mysql('aws');
 const promisePool = pool.promise()
 
 const s3 = new AWS.S3({
@@ -78,7 +79,7 @@ app.use(async (ctx, next) => {
 */
 
 const myBucket = 'cs407projectjialu' // bucket name, don't change
-const myKey = 'workingspace.zip' // Key is the id of the object, it should be <name provided by the user> + delimiter + uuid5 hased user email
+const myKey = 'workingspace.zip' // Key is the id of the object, it should be <name provided by the user> + delimiter + uuid5 hashed user email
 const signedUrlExpireSeconds = 60 * 5 //how long you want the url to be valid
 
 
