@@ -15,7 +15,8 @@ const app = new Koa();
 //     connectionLimit: 10,
 //     queueLimit: 0
 // });
-const pool = require('@/config/dev').mysql('aws');
+const mysqlCredential = require('@/config/dev').mysql('aws');
+const pool = mysql.createPool(mysqlCredential);
 const promisePool = pool.promise()
 
 const s3 = new AWS.S3({
