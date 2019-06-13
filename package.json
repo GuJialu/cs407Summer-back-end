@@ -9,6 +9,8 @@
     "cross-env": "^5.2.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.7.0",
+    "koa-json": "^2.0.2",
+    "koa-onerror": "^4.1.0",
     "mocha": "^6.1.4",
     "mysql2": "^1.6.5",
     "nodemon": "^1.19.1",

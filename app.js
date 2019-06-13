@@ -17,7 +17,7 @@ const app = new Koa();
 //     connectionLimit: 10,
 //     queueLimit: 0
 // });
-const mysqlCredential = require('@/config/dev').mysql('aws');
+const mysqlCredential = require('./config/dev').mysql['aws'];
 const pool = mysql.createPool(mysqlCredential);
 const promisePool = pool.promise()
 
@@ -28,7 +28,7 @@ const s3 = new AWS.S3({
 
 const appsecret = 'secret'; //hard coded secret
 
-app.use(async (ctx, next) => {
+app.use(async(ctx, next) => {
 
     const userA = {
         id: 0,
@@ -36,39 +36,40 @@ app.use(async (ctx, next) => {
         email: 'aaa@gmail.com'
     }
 
-    if (ctx.method === 'GET' && ctx.path === '/login'){
+    if (ctx.method === 'GET' && ctx.path === '/login') {
 
         //check username and password not implemented yet
         const dbres = await promisePool.execute(
             'create table users(Email varchar(255) not null, Pass varchar(255) not null, Username varchar(255) not null, primary key(Email));'
-            );
+        );
         console.log(dbres);
 
-        token = Jwt.sign({userA}, appsecret);
+        token = Jwt.sign({ userA }, appsecret);
         ctx.body = token;
         return;
     }
 
-    if (ctx.method === 'GET' && ctx.path === '/getprotected'){
+    if (ctx.method === 'GET' && ctx.path === '/getprotected') {
 
         //check the authorization when the client wants to request upload and download
-        if(!tokenIsVaild(ctx)){
+        if (!tokenIsVaild(ctx)) {
             ctx.status = 403;
             return;
         }
         ctx.body = 'protectedcontent';
         return;
-    }    
+    }
 });
 
 //function verifies if the authrization token from the client is vaild
-function tokenIsVaild(ctx){
+function tokenIsVaild(ctx) {
     bearerHeader = ctx.header['authorization'];
     token = bearerHeader.split(' ')[1];
     console.log(token);
-    try{
+    try {
         Jwt.verify(token, appsecret);
-    }catch{
+    } catch (e) {
+        console.log(e);
         return false;
     }
     return true;
@@ -86,7 +87,7 @@ const myKey = 'workingspace.zip' // Key is the id of the object, it should be <n
 const signedUrlExpireSeconds = 60 * 5 //how long you want the url to be valid
 
 
-var params = {Bucket: myBucket, Key: myKey};
+var params = { Bucket: myBucket, Key: myKey };
 //const urlUpload = s3.getSignedUrl('putObject', params); // the upload url to aws s3, use put request to upload
 //const urlDownload = s3.getSignedUrl('getObject', params); // the download url to aws s3, use get request to download
 //console.log(urlUpload);
