@@ -1,8 +1,10 @@
 const Koa = require('koa');
-var bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const Jwt = require('jsonwebtoken');
 const mysql = require('mysql2');
-const AWS = require('aws-sdk') // make sure you have the credentials file in C:\Users\<Username>\.aws\ otherwise it won't connect
+const AWS = require('aws-sdk'); // make sure you have the credentials file in C:\Users\<Username>\.aws\ otherwise it won't connect
+const json = require('koa-json');
+const onerror = require('koa-onerror');
 
 const app = new Koa();
 
