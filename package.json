@@ -1,41 +1,27 @@
 {
-  "name": "cs407-backend",
-  "version": "1.0.0",
-  "main": "app.js",
+  "name": "cs407-back-end",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node bin/www",
+    "dev": "./node_modules/.bin/nodemon bin/www",
+    "prd": "pm2 start bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
-    "aws-sdk": "^2.465.0",
-    "babel-register": "^6.26.0",
-    "bcrypt": "^3.0.6",
-    "cross-env": "^5.2.0",
-    "jsonwebtoken": "^8.5.1",
+    "debug": "^4.1.1",
     "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.0",
     "koa-onerror": "^4.1.0",
-    "mocha": "^6.1.4",
-    "mysql2": "^1.6.5",
-    "nodemon": "^1.19.1",
-    "normalize-path": "^3.0.0",
-    "npm-run-path": "^3.1.0",
-    "oauth-sign": "^0.9.0"
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.0",
+    "pug": "^2.0.3"
   },
   "devDependencies": {
-    "eslint": "^5.16.0"
-  },
-  "scripts": {
-    "test": "test",
-    "start": "NODE_ENV=dev supervisor bin/modsworkshop_server",
-    "dev": "node ./bin/modsworkshop_server",
-    "prd": "NODE_ENV=prod pm2 start bin/modsworkshop_server"
-  },
-  "author": "",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GuJialu/cs407Summer-back-end.git"
-  },
-  "bugs": {
-    "url": "https://github.com/GuJialu/cs407Summer-back-end/issues"
-  },
-  "homepage": "https://github.com/GuJialu/cs407Summer-back-end#readme",
-  "description": ""
+    "nodemon": "^1.19.1"
+  }
 }
