@@ -11,5 +11,9 @@ module.exports = {
             connectionLimit: 10,
             queueLimit: 0
         }
+    },
+    s3: {
+        signatureVersion: 'v4',
+        region: 'us-east-2'
     }
 }
