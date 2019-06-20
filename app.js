@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -15,18 +14,17 @@ onerror(app)
 
 // middlewares
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+    enableTypes: ['json', 'form', 'text']
 }))
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
-  extension: 'pug'
+    extension: 'pug'
 }))
 
 // logger
-=======
 const Koa = require('koa');
 var bcrypt = require('bcrypt');
 const Jwt = require('jsonwebtoken');
@@ -53,12 +51,11 @@ const s3 = new AWS.S3({
 
 const appsecret = 'secret'; //hard coded secret
 
->>>>>>> parent of cc3346f... store aws credentials in a seperated file/ directory
-app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+app.use(async(ctx, next) => {
+    const start = new Date()
+    await next()
+    const ms = new Date() - start
+    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
 // routes
@@ -67,20 +64,20 @@ app.use(users.routes(), users.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
+    console.error('server error', err, ctx)
 });
 
-<<<<<<< HEAD
+
 module.exports = app
-=======
+
 //function verifies if the authrization token from the client is vaild
-function tokenIsVaild(ctx){
+function tokenIsVaild(ctx) {
     bearerHeader = ctx.header['authorization'];
     token = bearerHeader.split(' ')[1];
     console.log(token);
-    try{
+    try {
         Jwt.verify(token, appsecret);
-    }catch{
+    } catch {
         return false;
     }
     return true;
@@ -98,10 +95,9 @@ const myKey = 'workingspace.zip' // Key is the id of the object, it should be <n
 const signedUrlExpireSeconds = 60 * 5 //how long you want the url to be valid
 
 
-var params = {Bucket: myBucket, Key: myKey};
+var params = { Bucket: myBucket, Key: myKey };
 //const urlUpload = s3.getSignedUrl('putObject', params); // the upload url to aws s3, use put request to upload
 //const urlDownload = s3.getSignedUrl('getObject', params); // the download url to aws s3, use get request to download
 //console.log(urlUpload);
 
 app.listen(3000);
->>>>>>> parent of cc3346f... store aws credentials in a seperated file/ directory
